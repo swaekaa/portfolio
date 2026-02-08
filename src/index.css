@@ -1,0 +1,266 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Deep black portfolio theme */
+    --background: 0 0% 4%;
+    --foreground: 0 0% 95%;
+
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 0 0% 7%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 340 82% 62%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 90%;
+
+    --muted: 0 0% 14%;
+    --muted-foreground: 0 0% 55%;
+
+    --accent: 25 95% 55%;
+    --accent-foreground: 0 0% 100%;
+    --accent-pink: 340 82% 62%;
+    --accent-orange: 25 95% 55%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 340 82% 62%;
+
+    --radius: 0.75rem;
+
+    /* Custom tokens */
+    --paper-bg: 40 30% 92%;
+    --paper-line: 220 20% 80%;
+    --gradient-pink: 340 82% 62%;
+    --gradient-orange: 25 95% 55%;
+    --glass-bg: 0 0% 100% / 0.06;
+    --glass-border: 0 0% 100% / 0.12;
+    --neon-pink: 340 100% 65%;
+    --neon-orange: 25 100% 60%;
+
+    --sidebar-background: 0 0% 6%;
+    --sidebar-foreground: 0 0% 90%;
+    --sidebar-primary: 340 82% 62%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 12%;
+    --sidebar-accent-foreground: 0 0% 90%;
+    --sidebar-border: 0 0% 15%;
+    --sidebar-ring: 340 82% 62%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-size: 18px;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Gaegu', cursive;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: hsl(340 82% 62% / 0.4);
+    color: white;
+  }
+}
+
+@layer components {
+  /* Grain/noise texture overlay */
+  .grain-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    pointer-events: none;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 256px 256px;
+  }
+
+  /* Pink-orange gradient */
+  .gradient-pink-orange {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--accent-pink)) 0%,
+      hsl(var(--accent-orange)) 100%
+    );
+  }
+
+  .gradient-text {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--accent-pink)) 0%,
+      hsl(var(--accent-orange)) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Glassmorphism */
+  .glass {
+    background: hsl(var(--glass-bg));
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid hsl(var(--glass-border));
+  }
+
+  .glass-strong {
+    background: hsl(0 0% 100% / 0.1);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid hsl(0 0% 100% / 0.18);
+  }
+
+  /* Neon border effect */
+  .neon-border-pink {
+    box-shadow: 0 0 8px hsl(var(--neon-pink) / 0.4),
+                0 0 20px hsl(var(--neon-pink) / 0.15),
+                inset 0 0 8px hsl(var(--neon-pink) / 0.1);
+    border: 1px solid hsl(var(--neon-pink) / 0.5);
+  }
+
+  .neon-border-orange {
+    box-shadow: 0 0 8px hsl(var(--neon-orange) / 0.4),
+                0 0 20px hsl(var(--neon-orange) / 0.15),
+                inset 0 0 8px hsl(var(--neon-orange) / 0.1);
+    border: 1px solid hsl(var(--neon-orange) / 0.5);
+  }
+
+  /* Passion hover glow */
+  .passion-glow {
+    box-shadow: 0 0 20px hsl(var(--accent-pink) / 0.6),
+                0 0 40px hsl(var(--accent-pink) / 0.4),
+                inset 0 0 12px hsl(var(--accent-pink) / 0.15);
+    border-color: hsl(var(--accent-pink) / 0.8);
+  }
+
+  /* Gradient glow */
+  .gradient-glow {
+    box-shadow: 0 0 40px hsl(var(--accent-pink) / 0.3),
+                0 0 80px hsl(var(--accent-orange) / 0.15);
+  }
+
+  /* Notebook styling */
+  .notebook-page {
+    background: hsl(var(--paper-bg));
+    background-image: 
+      repeating-linear-gradient(
+        transparent,
+        transparent 31px,
+        hsl(var(--paper-line) / 0.4) 31px,
+        hsl(var(--paper-line) / 0.4) 32px
+      );
+  }
+
+  .notebook-spine {
+    background: linear-gradient(
+      90deg,
+      hsl(0 0% 30% / 0.4) 0%,
+      hsl(0 0% 50% / 0.1) 40%,
+      transparent 60%,
+      hsl(0 0% 50% / 0.1) 80%,
+      hsl(0 0% 30% / 0.3) 100%
+    );
+  }
+
+  /* Section gradient backgrounds */
+  .section-gradient-rise {
+    background: linear-gradient(
+      to top,
+      hsl(var(--accent-pink) / 0.15) 0%,
+      hsl(var(--accent-orange) / 0.08) 40%,
+      transparent 100%
+    );
+  }
+
+  /* Gradient button */
+  .btn-gradient {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--accent-pink)) 0%,
+      hsl(var(--accent-orange)) 100%
+    );
+    color: white;
+    transition: all 0.3s ease;
+  }
+  .btn-gradient:hover {
+    box-shadow: 0 0 30px hsl(var(--accent-pink) / 0.5),
+                0 0 60px hsl(var(--accent-orange) / 0.2);
+    transform: translateY(-2px);
+  }
+
+  /* Skill bar fill animation */
+  .skill-fill {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--accent-pink)) 0%,
+      hsl(var(--accent-orange)) 100%
+    );
+    transition: width 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  /* Laptop mockup */
+  .laptop-body {
+    background: linear-gradient(
+      145deg,
+      hsl(0 0% 18%) 0%,
+      hsl(0 0% 10%) 100%
+    );
+    border: 2px solid hsl(0 0% 25%);
+  }
+
+  .laptop-screen {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--accent-pink) / 0.15) 0%,
+      hsl(var(--accent-orange) / 0.1) 50%,
+      hsl(0 0% 8%) 100%
+    );
+  }
+
+  /* Spotlight effect */
+  .spotlight {
+    background: radial-gradient(
+      ellipse at center,
+      hsl(var(--accent-pink) / 0.15) 0%,
+      hsl(var(--accent-orange) / 0.08) 30%,
+      transparent 70%
+    );
+  }
+}
+
+@layer utilities {
+  .text-shadow-glow {
+    text-shadow: 0 0 20px hsl(var(--accent-pink) / 0.5),
+                 0 0 40px hsl(var(--accent-pink) / 0.2);
+  }
+
+  /* Section heading with Honk font */
+  .section-heading {
+    font-family: "Honk", cursive;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings: "MORF" 15;
+    font-size: clamp(2.75rem, 9vw, 5rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+}
