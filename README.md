@@ -1,3 +1,3 @@
 # Welcome 
 
-## check this out  : https://ekaansh-sawaria-portfolio.vercel.app
+## check this out  : https://ekaansh-sawaria.vercel.app
