@@ -1,12 +1,12 @@
-import { useRef, useMemo } from "react";
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { useRef, useMemo, useState } from "react";
+import { motion, useInView, useScroll, useTransform, AnimatePresence } from "framer-motion";
 const passions = [
-  { icon: "🎧", label: "Music" },
-  { icon: "🏀", label: "Basketball" },
-  { icon: "🎬", label: "Movies" },
-  { icon: "🏃", label: "Sprinting" },
-  { icon: "🎾", label: "Tennis" },
-  { icon: "🛠️", label: "Building / Creating" },
+  { icon: "🎧", label: "Music", id: "music" },
+  { icon: "🏀", label: "Basketball", id: "basketball" },
+  { icon: "🎬", label: "Movies", id: "movies" },
+  { icon: "🏗️", label: "Building", id: "building" },
+  { icon: "🏃", label: "Sprint", id: "sprint" },
+  { icon: "🎾", label: "Tennis", id: "tennis" },
 ];
 
 const skills = [
@@ -19,6 +19,7 @@ const skills = [
 ];
 
 const PassionsSkills = () => {
+  const [selectedPassion, setSelectedPassion] = useState<string | null>(null);
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
   const { scrollYProgress } = useScroll({
@@ -153,39 +154,185 @@ const PassionsSkills = () => {
           </motion.div>
 
           {/* Passions */}
-          <div className="relative h-40 flex items-center justify-center">
-            <div className="flex items-center justify-center gap-8 lg:gap-12 flex-wrap max-w-5xl mx-auto">
+          <div className="relative space-y-8">
+            {/* Passion Circular Icons Grid */}
+            <div className="flex items-start justify-center gap-8 lg:gap-12 flex-wrap max-w-5xl mx-auto px-4">
               {passions.map((passion, index) => (
-                <motion.div
-                  key={passion.label}
-                  className="flex flex-col items-center gap-4 group/passion"
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                  transition={{
-                    delay: 0.1 + index * 0.03,
-                    duration: 1,
-                    type: "spring",
-                    stiffness: 80,
-                    damping: 15,
-                  }}
-                  whileHover={{ scale: 1.15 }}
-                >
-                  <motion.div
-                    className="w-20 h-20 glass rounded-full flex items-center justify-center text-3xl shadow-lg border-2 border-accent-pink/40 cursor-pointer group-hover/passion:passion-glow transition-all duration-300"
-                    animate={{ y: [-10, 10, -10] }}
-                    transition={{
-                      duration: 4 + index * 0.1,
-                      repeat: Infinity,
-                      ease: "easeInOut",
+                <div key={passion.id} className="flex flex-col items-center gap-2">
+                  <motion.button
+                    onClick={() => setSelectedPassion(selectedPassion === passion.id ? null : passion.id)}
+                    className={`relative w-24 h-24 rounded-full flex items-center justify-center text-4xl transition-all duration-300 ${
+                      selectedPassion === passion.id
+                        ? "shadow-lg shadow-accent-pink/80 scale-110"
+                        : "shadow-md shadow-accent-pink/40 hover:shadow-lg hover:shadow-accent-pink/60 hover:scale-105"
+                    }`}
+                    style={{
+                      background: selectedPassion === passion.id
+                        ? "linear-gradient(135deg, rgba(236,72,153,0.3) 0%, rgba(249,115,22,0.3) 100%)"
+                        : "linear-gradient(135deg, rgba(236,72,153,0.15) 0%, rgba(249,115,22,0.15) 100%)",
+                      border: selectedPassion === passion.id
+                        ? "2px solid rgba(236,72,153,0.8)"
+                        : "2px solid rgba(236,72,153,0.3)",
+                      backdropFilter: "blur(10px)",
                     }}
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                    transition={{
+                      delay: 0.1 + index * 0.08,
+                      duration: 0.6,
+                      type: "spring",
+                      stiffness: 100,
+                    }}
+                    whileHover={{ y: -4 }}
+                    title={passion.label}
                   >
                     {passion.icon}
-                  </motion.div>
-                  <span className="text-base font-semibold text-accent-pink text-center">
-                    {passion.label}
-                  </span>
-                </motion.div>
+                  </motion.button>
+                  <p className="text-sm font-semibold text-foreground/80">{passion.label}</p>
+                </div>
               ))}
+            </div>
+
+            {/* Fixed Space Container to Prevent Jitter */}
+            <div className="min-h-96 mx-auto px-4 max-w-3xl">
+              <AnimatePresence mode="wait">
+                {selectedPassion && (
+                  <motion.div
+                    key={selectedPassion}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.4 }}
+                    className="h-full"
+                  >
+                    <div className="glass rounded-xl border border-accent-pink/30 p-6 md:p-8 bg-gradient-to-br from-accent-pink/5 to-accent-orange/5 h-full">
+                      {/* Music */}
+                      {selectedPassion === "music" && (
+                        <div className="space-y-3">
+                          <h3 className="text-lg font-bold text-foreground mb-3">Favourite Albums</h3>
+                          <div className="flex justify-center gap-3 flex-wrap">
+                            {[
+                              { title: "Hotel California", artist: "The Eagles", cover: "/15070-hotel-californa.jpg" },
+                              { title: "Eye in the Sky", artist: "The Alan Parsons Project", cover: "/42145-eye-in-the-sky-2.jpg" },
+                              { title: "Communiqué", artist: "Dire Straits", cover: "/15840-communique-1.jpg" },
+                            ].map((album, idx) => (
+                              <motion.div
+                                key={idx}
+                                initial={{ opacity: 0, scale: 0.8 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{ delay: idx * 0.1 }}
+                                className="flex flex-col items-center gap-2"
+                              >
+                                <img
+                                  src={album.cover}
+                                  alt={album.title}
+                                  className="w-32 h-32 rounded-lg border border-accent-pink/30 shadow-md hover:border-accent-pink/60 transition-colors object-cover"
+                                />
+                                <div className="text-center text-xs max-w-24">
+                                  <p className="font-semibold text-foreground line-clamp-2">{album.title}</p>
+                                  <p className="text-foreground/60 text-xs line-clamp-1">{album.artist}</p>
+                                </div>
+                              </motion.div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Basketball */}
+                      {selectedPassion === "basketball" && (
+                        <div className="space-y-4">
+                          <h3 className="text-xl font-bold text-foreground mb-4">Basketball Highlights</h3>
+                          <video
+                            controls
+                            autoPlay
+                            muted
+                            loop
+                            className="w-full rounded-lg border border-accent-pink/30 shadow-lg max-h-64"
+                          >
+                            <source src="/basketball.mp4" type="video/mp4" />
+                            Your browser does not support the video tag.
+                          </video>
+                        </div>
+                      )}
+
+                      {/* Movies */}
+                      {selectedPassion === "movies" && (
+                        <div className="space-y-3">
+                          <h3 className="text-lg font-bold text-foreground mb-3">Movies everyone should watch</h3>
+                          <div className="flex justify-center gap-3 flex-wrap">
+                            {[
+                              { title: "Cars", poster: "/cars.jpg" },
+                              { title: "Real Steel", poster: "/reaal steel.jpg" },
+                              { title: "Speed", poster: "/speed.jpg" },
+                            ].map((movie, idx) => (
+                              <motion.div
+                                key={idx}
+                                initial={{ opacity: 0, scale: 0.8 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{ delay: idx * 0.1 }}
+                                className="flex flex-col items-center gap-2"
+                              >
+                                <img
+                                  src={movie.poster}
+                                  alt={movie.title}
+                                  className="w-28 h-40 rounded-lg border border-accent-pink/30 shadow-md object-cover hover:border-accent-pink/60 transition-colors"
+                                />
+                                <p className="text-center text-foreground text-xs font-semibold">{movie.title}</p>
+                              </motion.div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Building */}
+                      {selectedPassion === "building" && (
+                        <div className="space-y-2">
+                          <h3 className="text-lg font-bold text-foreground mb-2">Building</h3>
+                          <div className="max-w-xs mx-auto">
+                            <img
+                              src="/creating.jpeg"
+                              alt="Building"
+                              className="w-full rounded-lg border border-accent-pink/30 shadow-lg object-cover max-h-56"
+                            />
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Sprint */}
+                      {selectedPassion === "sprint" && (
+                        <div className="space-y-2">
+                          <h3 className="text-lg font-bold text-foreground mb-2">Sprint</h3>
+                          <div className="max-w-xs mx-auto">
+                            <img
+                              src="/sprint.jpeg"
+                              alt="Sprint"
+                              className="w-full rounded-lg border border-accent-pink/30 shadow-lg object-cover max-h-screen"
+                            />
+                          </div>
+                          <p className="text-center text-foreground/80 text-xs italic">Won some medals in my short-lived career.</p>
+                        </div>
+                      )}
+
+                      {/* Tennis */}
+                      {selectedPassion === "tennis" && (
+                        <div className="space-y-2">
+                          <h3 className="text-lg font-bold text-foreground mb-2">Tennis</h3>
+                          <p className="text-foreground/80 text-xs mb-2">I don't have any media of myself… so here are highlights of Federer's backhand.</p>
+                          <div className="max-w-xs mx-auto">
+                            <video
+                              controls
+                              className="w-full rounded-lg border border-accent-pink/30 shadow-lg max-h-56"
+                            >
+                              <source src="/fedrer.mp4" type="video/mp4" />
+                              Your browser does not support the video tag.
+                            </video>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </div>
         </div>
