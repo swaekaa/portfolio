@@ -1,5 +1,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { FileText } from "lucide-react";
+import resume from "../../public/Ekaansh_Sawaria_cv.pdf";
 
 const About = () => {
   const ref = useRef(null);
@@ -35,6 +37,24 @@ const About = () => {
         >
           When I'm not coding, you'll probably find me experimenting with new AI tools, or disappearing into deep tech rabbit holes. And if I'm really not at my laptop, I'm most likely playing sports, catching up on sleep, or dramatically singing in my shower like it's a sold out concert.
         </motion.p>
+
+        <motion.div
+          className="flex items-center gap-3 mt-8 max-w-xl"
+          initial={{ opacity: 0, x: 40 }}
+          animate={isInView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+        >
+          <span className="text-lg md:text-xl text-white font-semibold">
+            Check out my resume
+          </span>
+          <button
+            onClick={() => window.open(resume, '_blank')}
+            className="p-2 hover:bg-white/10 rounded-lg transition-colors duration-200 group cursor-pointer"
+            aria-label="Open resume in new tab"
+          >
+            <FileText className="w-6 h-6 text-white group-hover:text-blue-400 transition-colors duration-200" />
+          </button>
+        </motion.div>
       </div>
     </section>
   );
