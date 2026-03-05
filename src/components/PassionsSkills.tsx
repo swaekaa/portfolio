@@ -268,7 +268,7 @@ const PassionsSkills = () => {
                           <h3 className="text-lg font-bold text-foreground mb-3">Movies everyone should watch</h3>
                           <div className="flex justify-center gap-3 flex-wrap">
                             {[
-                              { title: "Cars 2", poster: "/cars.jpg", link: "https://www.imdb.com/title/tt1216475/" },
+                              { title: "Cars 2", poster: "/cars.jpg", link: "https://www.imdb.com/title/tt0317219/" },
                               { title: "Real Steel", poster: "/reaal steel.jpg", link: "https://www.imdb.com/title/tt0433035/" },
                               { title: "Speed", poster: "/speed.jpg", link: "https://www.imdb.com/title/tt0111257/" },
                             ].map((movie, idx) => (
