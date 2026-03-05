@@ -57,7 +57,7 @@ const FunFact = () => {
         />
       ))}
 
-      <div ref={ref} className="relative z-10 text-center px-4 max-w-3xl">
+      <div ref={ref} className="relative z-10 text-center px-0 md:px-4 max-w-3xl">
         <motion.p
           className="section-heading text-foreground leading-relaxed"
           initial={{ opacity: 0, scale: 0.9 }}

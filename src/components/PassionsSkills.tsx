@@ -104,7 +104,7 @@ const PassionsSkills = () => {
 
           <motion.div
             className="absolute top-1/2 flex items-center gap-0 transform -translate-y-1/2"
-            animate={{ x: ["calc(-200px)", "calc(100vw + 200px)"] }}
+            animate={{ x: ["calc(-100vw)", "calc(100vw)"] }}
             transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
           >
             {/* Shared gradients */}
@@ -156,7 +156,7 @@ const PassionsSkills = () => {
           {/* Passions */}
           <div className="relative space-y-8">
             {/* Passion Circular Icons Grid */}
-            <div className="flex items-start justify-center gap-8 lg:gap-12 flex-wrap max-w-5xl mx-auto px-4">
+            <div className="flex items-start justify-center gap-8 lg:gap-12 flex-wrap max-w-5xl mx-auto px-0 md:px-4">
               {passions.map((passion, index) => (
                 <div key={passion.id} className="flex flex-col items-center gap-2">
                   <motion.button
@@ -194,7 +194,7 @@ const PassionsSkills = () => {
             </div>
 
             {/* Fixed Space Container to Prevent Jitter */}
-            <div className="min-h-96 mx-auto px-4 max-w-3xl">
+            <div className="min-h-96 mx-auto px-0 md:px-4 max-w-3xl">
               <AnimatePresence mode="wait">
                 {selectedPassion && (
                   <motion.div
@@ -352,7 +352,7 @@ const PassionsSkills = () => {
         </div>
 
         {/* SKILLS */}
-        <div className="mx-auto px-4 max-w-7xl">
+        <div className="mx-auto px-0 md:px-4 max-w-7xl">
           <motion.h3
             className="text-3xl md:text-4xl font-semibold text-center mb-12 gradient-text"
             initial={{ opacity: 0 }}

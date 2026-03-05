@@ -10,7 +10,7 @@
 /* Add padding only on mobile/tablet */
 @media (max-width: 767px) {
   #root {
-    padding: 2rem;
+    /* padding: 2rem; */
   }
 }
 

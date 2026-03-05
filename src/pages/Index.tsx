@@ -37,7 +37,7 @@ const Index = () => {
         </motion.div>
 
         {/* Right - Scrollable content */}
-        <main className="relative z-10 bg-background container mx-auto px-4">
+        <main className="relative z-10 bg-background w-full px-0 md:px-4 md:container md:mx-auto">
           <About />
           <Education />
           <Projects />

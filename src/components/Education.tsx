@@ -23,7 +23,7 @@ const Education = () => {
         <div className="w-[800px] h-[600px] rounded-full bg-accent-pink/10 blur-[120px]" />
       </div>
 
-      <div ref={ref} className="relative z-10 w-full max-w-4xl px-2 md:px-4 mx-auto">
+      <div ref={ref} className="relative z-10 w-full max-w-4xl px-0 md:px-4 mx-auto">
         <motion.h2
           className="section-heading text-foreground text-center mb-16 font-semibold"
           initial={{ opacity: 0, y: 20 }}

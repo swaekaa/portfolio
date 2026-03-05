@@ -38,11 +38,11 @@ const Hero = () => {
 
       {/* Centered Name — letter-by-letter */}
       <div className="relative z-10 flex items-center justify-center h-full">
-        <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold text-primary-foreground font-gaegu tracking-wider text-center text-shadow-glow flex flex-wrap justify-center">
+        <h1 className="text-5xl md:text-8xl lg:text-9xl font-bold text-primary-foreground font-gaegu tracking-wider text-center text-shadow-glow flex flex-wrap justify-center">
           {nameWords.map((word, wi) => {
             const charIndexOffset = nameWords.slice(0, wi).reduce((sum, w) => sum + w.length, 0);
             return (
-              <span key={wi} className="block sm:inline">
+              <span key={wi} className="inline">
                 {word.split("").map((char, i) => (
                   <motion.span
                     key={wi + "-" + i}
@@ -57,7 +57,7 @@ const Hero = () => {
                   </motion.span>
                 ))}
                 {wi < nameWords.length - 1 && (
-                  <span className="hidden sm:inline">&nbsp;</span>
+                  <span>&nbsp;</span>
                 )}
               </span>
             );

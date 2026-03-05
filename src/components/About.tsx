@@ -9,7 +9,7 @@ const About = () => {
 
   return (
     <section id="about" className="relative min-h-screen bg-background" ref={ref}>
-      <div className="flex flex-col justify-center px-4 md:px-8 lg:px-16 xl:px-20 py-20 min-h-screen">
+      <div className="flex flex-col justify-center px-0 md:px-8 lg:px-16 xl:px-20 py-20 min-h-screen">
         <motion.div
           initial={{ opacity: 0, x: 40 }}
           animate={isInView ? { opacity: 1, x: 0 } : {}}

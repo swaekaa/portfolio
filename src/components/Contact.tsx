@@ -21,7 +21,7 @@ const Contact = () => {
       {/* Background glow */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full bg-accent-pink/5 blur-[120px]" />
 
-      <div ref={ref} className="relative z-10 w-full max-w-lg px-4 md:px-6">
+      <div ref={ref} className="relative z-10 w-full max-w-lg px-0 md:px-6">
         <motion.h2
           className="section-heading text-foreground text-center mb-4 font-semibold"
           initial={{ opacity: 0, y: 20 }}
