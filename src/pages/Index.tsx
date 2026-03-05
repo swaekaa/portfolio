@@ -34,10 +34,10 @@ const Index = () => {
       <div className="h-screen" />
 
       {/* Main content wrapper with 50-50 split on desktop */}
-      <div className="relative z-10 bg-background min-h-full mx-auto w-full overflow-x-hidden">
+      <div className="wrapper-content relative z-10 bg-background min-h-full mx-auto w-full overflow-x-hidden">
         {/* Left - Fixed Profile Image Panel (Desktop only, appears after landing page) */}
         {showProfilePanel && (
-          <div className="profile-panel hidden lg:block fixed left-0 top-0 h-screen overflow-hidden pointer-events-none">
+          <div className="profile-panel fixed left-0 top-0 h-screen overflow-hidden pointer-events-none hidden lg:block">
             <img
               src="/images/post-now.jpeg"
               alt="Ekaansh"
