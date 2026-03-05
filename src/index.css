@@ -101,6 +101,53 @@
       max-width: 100%;
       height: auto;
     }
+
+    section {
+      overflow: hidden;
+      position: relative;
+      z-index: 1;
+    }
+
+    section + section {
+      z-index: 2;
+    }
+  }
+
+  /* Desktop 50-50 split layout */
+  @media (min-width: 1024px) {
+    .profile-panel {
+      width: 50%;
+      height: 100vh;
+      position: fixed;
+      left: 0;
+      top: 0;
+      overflow: hidden;
+      z-index: 5;
+    }
+
+    .profile-panel img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .content-panel {
+      width: 50%;
+      position: relative;
+      z-index: 20;
+    }
+  }
+
+  /* Ensure profile panel is completely hidden on mobile */
+  @media (max-width: 1023px) {
+    .profile-panel {
+      display: none !important;
+    }
+
+    .content-panel {
+      width: 100%;
+      margin-left: 0 !important;
+    }
   }
 
   ::selection {

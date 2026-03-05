@@ -204,7 +204,7 @@ const Projects = () => {
   const opacity = useTransform(scrollYProgress, [0, 0.4], [0, 1]);
 
   return (
-    <section id="projects" className="relative min-h-screen bg-background flex items-center justify-center py-20" data-no-splash="true">
+    <section id="projects" className="relative min-h-screen bg-background flex items-center justify-center py-20 overflow-hidden" data-no-splash="true">
       <div ref={ref} className="relative z-10 w-full max-w-5xl px-0 md:px-4">
         <motion.h2
           className="section-heading text-foreground text-center mb-16 font-semibold"

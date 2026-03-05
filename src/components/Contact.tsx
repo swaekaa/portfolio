@@ -16,7 +16,7 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="relative min-h-screen bg-background flex items-center justify-center py-20"
+      className="relative min-h-screen bg-background flex items-center justify-center py-20 overflow-hidden"
     >
       {/* Background glow */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full bg-accent-pink/5 blur-[120px]" />

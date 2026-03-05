@@ -15,11 +15,11 @@ const Education = () => {
   return (
     <section
       id="education"
-      className="relative min-h-screen bg-background flex items-center justify-center py-20"
+      className="relative min-h-screen bg-background flex items-center justify-center py-20 overflow-hidden"
       data-no-splash="true"
     >
       {/* Gradient glow behind notebook */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
         <div className="w-[800px] h-[600px] rounded-full bg-accent-pink/10 blur-[120px]" />
       </div>
 
