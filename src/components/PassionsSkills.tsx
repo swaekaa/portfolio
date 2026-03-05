@@ -212,9 +212,9 @@ const PassionsSkills = () => {
                           <h3 className="text-lg font-bold text-foreground mb-3">Favourite Albums</h3>
                           <div className="flex justify-center gap-3 flex-wrap">
                             {[
-                              { title: "Hotel California", artist: "The Eagles", cover: "/15070-hotel-californa.jpg" },
-                              { title: "Eye in the Sky", artist: "The Alan Parsons Project", cover: "/42145-eye-in-the-sky-2.jpg" },
-                              { title: "Communiqué", artist: "Dire Straits", cover: "/15840-communique-1.jpg" },
+                              { title: "Hotel California", artist: "The Eagles", cover: "/15070-hotel-californa.jpg", link: "https://open.spotify.com/album/2widuo17g5CEC66IbzveRu" },
+                              { title: "Eye in the Sky", artist: "The Alan Parsons Project", cover: "/42145-eye-in-the-sky-2.jpg", link: "https://open.spotify.com/album/71Y6kburF8k1qyHycovHy8" },
+                              { title: "Communiqué", artist: "Dire Straits", cover: "/15840-communique-1.jpg", link: "https://open.spotify.com/album/2xQBCPq2gQ7l8thLUUZSKu" },
                             ].map((album, idx) => (
                               <motion.div
                                 key={idx}
@@ -223,11 +223,18 @@ const PassionsSkills = () => {
                                 transition={{ delay: idx * 0.1 }}
                                 className="flex flex-col items-center gap-2"
                               >
-                                <img
-                                  src={album.cover}
-                                  alt={album.title}
-                                  className="w-32 h-32 rounded-lg border border-accent-pink/30 shadow-md hover:border-accent-pink/60 transition-colors object-cover"
-                                />
+                                <a
+                                  href={album.link}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="block hover:transform hover:scale-105 transition-transform"
+                                >
+                                  <img
+                                    src={album.cover}
+                                    alt={album.title}
+                                    className="w-32 h-32 rounded-lg border border-accent-pink/30 shadow-md hover:border-accent-pink/60 active:border-accent-orange/60 transition-colors object-cover cursor-pointer"
+                                  />
+                                </a>
                                 <div className="text-center text-xs max-w-24">
                                   <p className="font-semibold text-foreground line-clamp-2">{album.title}</p>
                                   <p className="text-foreground/60 text-xs line-clamp-1">{album.artist}</p>
@@ -261,9 +268,9 @@ const PassionsSkills = () => {
                           <h3 className="text-lg font-bold text-foreground mb-3">Movies everyone should watch</h3>
                           <div className="flex justify-center gap-3 flex-wrap">
                             {[
-                              { title: "Cars", poster: "/cars.jpg" },
-                              { title: "Real Steel", poster: "/reaal steel.jpg" },
-                              { title: "Speed", poster: "/speed.jpg" },
+                              { title: "Cars 2", poster: "/cars.jpg", link: "https://www.imdb.com/title/tt1216475/" },
+                              { title: "Real Steel", poster: "/reaal steel.jpg", link: "https://www.imdb.com/title/tt0433035/" },
+                              { title: "Speed", poster: "/speed.jpg", link: "https://www.imdb.com/title/tt0111257/" },
                             ].map((movie, idx) => (
                               <motion.div
                                 key={idx}
@@ -272,11 +279,18 @@ const PassionsSkills = () => {
                                 transition={{ delay: idx * 0.1 }}
                                 className="flex flex-col items-center gap-2"
                               >
-                                <img
-                                  src={movie.poster}
-                                  alt={movie.title}
-                                  className="w-28 h-40 rounded-lg border border-accent-pink/30 shadow-md object-cover hover:border-accent-pink/60 transition-colors"
-                                />
+                                <a
+                                  href={movie.link}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="block hover:transform hover:scale-105 transition-transform"
+                                >
+                                  <img
+                                    src={movie.poster}
+                                    alt={movie.title}
+                                    className="w-28 h-40 rounded-lg border border-accent-pink/30 shadow-md object-cover hover:border-accent-pink/60 active:border-accent-orange/60 transition-colors cursor-pointer"
+                                  />
+                                </a>
                                 <p className="text-center text-foreground text-xs font-semibold">{movie.title}</p>
                               </motion.div>
                             ))}

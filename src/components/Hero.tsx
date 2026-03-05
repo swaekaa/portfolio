@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 
-const name = "EKAANSH SAWARIA";
+// split into words so mobile can stack them on separate lines
+const nameWords = ["EKAANSH", "SAWARIA"];
 
 const letterVariants = {
   hidden: { opacity: 0, y: 40, rotateX: -90 },
@@ -19,34 +20,48 @@ const letterVariants = {
 const Hero = () => {
   return (
     <section id="hero" className="fixed inset-0 w-full h-screen z-0" data-no-splash="true">
-      {/* GIF Background */}
+      {/* GIF Background (centered to match content width on desktop) */}
       <div className="absolute inset-0">
-        <img
-          src="/images/hero-bg.gif"
-          alt=""
-          className="w-full h-full object-cover"
-          aria-hidden="true"
-        />
-        {/* Dark overlay for readability */}
-        <div className="absolute inset-0 bg-background/40" />
+        <div className="absolute inset-0 flex justify-center">
+          <div className="w-full h-full overflow-hidden relative">
+            <img
+              src="/images/hero-bg.gif"
+              alt=""
+              className="w-full h-full object-cover"
+              aria-hidden="true"
+            />
+            {/* Dark overlay for readability */}
+            <div className="absolute inset-0 bg-background/40" />
+          </div>
+        </div>
       </div>
 
       {/* Centered Name — letter-by-letter */}
       <div className="relative z-10 flex items-center justify-center h-full">
         <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold text-primary-foreground font-gaegu tracking-wider text-center text-shadow-glow flex flex-wrap justify-center">
-          {name.split("").map((char, i) => (
-            <motion.span
-              key={i}
-              custom={i}
-              variants={letterVariants}
-              initial="hidden"
-              animate="visible"
-              className={char === " " ? "inline-block w-2 md:w-4 lg:w-6" : "inline-block"}
-              style={{ perspective: 600 }}
-            >
-              {char === " " ? "\u00A0" : char}
-            </motion.span>
-          ))}
+          {nameWords.map((word, wi) => {
+            const charIndexOffset = nameWords.slice(0, wi).reduce((sum, w) => sum + w.length, 0);
+            return (
+              <span key={wi} className="block sm:inline">
+                {word.split("").map((char, i) => (
+                  <motion.span
+                    key={wi + "-" + i}
+                    custom={charIndexOffset + i}
+                    variants={letterVariants}
+                    initial="hidden"
+                    animate="visible"
+                    className="inline-block"
+                    style={{ perspective: 600 }}
+                  >
+                    {char}
+                  </motion.span>
+                ))}
+                {wi < nameWords.length - 1 && (
+                  <span className="hidden sm:inline">&nbsp;</span>
+                )}
+              </span>
+            );
+          })}
         </h1>
       </div>
 

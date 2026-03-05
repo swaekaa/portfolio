@@ -20,8 +20,8 @@ const Index = () => {
       {/* Spacer for the fixed hero */}
       <div className="h-screen" />
 
-      {/* Main content wrapper with sticky image on left */}
-      <div className="relative z-10 bg-background grid grid-cols-1 lg:grid-cols-2 min-h-full">
+      {/* Main content wrapper with sticky image on left, centered and constrained */}
+      <div className="relative z-10 bg-background grid grid-cols-1 lg:grid-cols-2 min-h-full mx-auto w-full">
         {/* Left - Sticky Image */}
         <motion.div
           className="hidden lg:flex lg:sticky lg:top-0 lg:h-screen items-center justify-center overflow-hidden relative"
@@ -37,7 +37,7 @@ const Index = () => {
         </motion.div>
 
         {/* Right - Scrollable content */}
-        <main className="relative z-10 bg-background">
+        <main className="relative z-10 bg-background container mx-auto px-4">
           <About />
           <Education />
           <Projects />

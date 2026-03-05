@@ -1,8 +1,17 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  /* make the root container span the full viewport so there are no
+     black margins on the sides of a wide desktop screen */
+  width: 100%;
+  max-width: none;
+  margin: 0;
   text-align: center;
+}
+
+/* Add padding only on mobile/tablet */
+@media (max-width: 767px) {
+  #root {
+    padding: 2rem;
+  }
 }
 
 .logo {

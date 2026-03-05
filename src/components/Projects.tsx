@@ -216,7 +216,9 @@ const Projects = () => {
         </motion.h2>
 
         <motion.div
-          className="relative mx-auto max-w-3xl cursor-pointer"
+          // allow full-width on narrow screens so the arcade/terminal "screen"
+          // can stretch and show more icons; constrain again at larger breakpoints
+          className="relative mx-auto max-w-full sm:max-w-3xl cursor-pointer"
           style={{ scale, opacity }}
           whileHover={{ scale: 1.08 }}
           onClick={() => setIsArcadeMode(!isArcadeMode)}
@@ -242,8 +244,8 @@ const Projects = () => {
                     </motion.div>
                   </div>
 
-                  <div className="bg-black rounded-2xl p-4 relative shadow-2xl mt-4">
-                    <div className="arcade-screen rounded-lg relative overflow-hidden border-4 border-yellow-600 shadow-inner" style={{ aspectRatio: "4/3" }}>
+                  <div className="bg-black rounded-2xl p-4 relative shadow-2xl mt-4 w-full">
+                    <div className="arcade-screen w-full rounded-lg relative overflow-hidden border-4 border-yellow-600 shadow-inner" style={{ aspectRatio: "4/3" }}>
                       <div
                         className="absolute inset-0 opacity-20 z-10 pointer-events-none"
                         style={{
@@ -253,7 +255,7 @@ const Projects = () => {
                       />
                       <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-black/30" />
 
-                      <div className="relative z-20 p-4 grid grid-cols-2 md:grid-cols-4 gap-3 h-full content-start bg-gradient-to-b from-purple-900 to-blue-900 overflow-y-auto">
+                      <div className="relative z-20 p-4 grid grid-cols-3 sm:grid-cols-4 gap-3 h-full content-start bg-gradient-to-b from-purple-900 to-blue-900 overflow-y-auto">
                         {projects.map((project, index) => (
                           <motion.button
                             key={project.id}
@@ -320,8 +322,8 @@ const Projects = () => {
                 style={{ perspective: 1000 }}
               >
                 <div className="bg-gradient-to-b from-gray-600 to-gray-700 rounded-2xl p-6 pt-10 relative shadow-2xl">
-                  <div className="bg-gray-800 rounded-xl p-4 relative border-8 border-gray-700">
-                    <div className="aspect-video relative overflow-hidden bg-black rounded border-2 border-gray-900 shadow-inner">
+                  <div className="bg-gray-800 rounded-xl p-4 relative border-8 border-gray-700 w-full">
+                    <div className="aspect-video w-full relative overflow-hidden bg-black rounded border-2 border-gray-900 shadow-inner">
                       <div
                         className="absolute inset-0 opacity-30 z-10 pointer-events-none"
                         style={{
