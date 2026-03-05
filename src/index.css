@@ -166,11 +166,13 @@
       width: 100% !important;
       margin-left: 0 !important;
       position: relative !important;
+      padding: 0 1rem; /* added mobile padding for readability */
     }
 
     .wrapper-content {
       width: 100% !important;
       margin-left: 0 !important;
+      padding: 0 1rem;
     }
 
     body, html {
