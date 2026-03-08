@@ -273,7 +273,7 @@ const Projects = () => {
                             <div className="w-11 h-11 bg-black/50 rounded-xl flex items-center justify-center text-yellow-400 border-2 border-yellow-400 group-hover:shadow-lg group-hover:shadow-yellow-400/50 transition-shadow">
                               {project.icon}
                             </div>
-                            <span className="text-[10px] text-yellow-300 text-center leading-tight font-bold text-shadow">
+                            <span className="text-sm text-yellow-300 text-center leading-tight font-bold text-shadow">
                               {project.name}
                             </span>
                           </motion.button>
